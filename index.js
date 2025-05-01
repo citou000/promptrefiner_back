@@ -43,10 +43,8 @@ The prompt should:
           {
             role: 'user',
             content: `Generate a single prompt I can give to an AI to achieve this outcome:
-
-${prompt}
-
-Return only the full prompt I should feed to the AI.`
+                      ${prompt}
+                      Return only the full prompt I should feed to the AI.`
           }
         ],
         temperature: 0.7,
