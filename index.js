@@ -43,11 +43,7 @@ app.post('/generate', async (req, res) => {
           },
           {
             role: 'user',
-            content: `Generate a single prompt I can give to an AI to achieve this outcome:
-
-I want project ideas related to game engines, physics simulation, and system programming. I am a math student.
-
-Return only the full prompt I should feed to the AI.`
+            content: `Generate a prompt to achieve this ${prompt}`
           }
         ]
         ,
