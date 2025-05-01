@@ -38,6 +38,7 @@ app.post('/generate', async (req, res) => {
             - Never ask follow-up questions or request clarifications.
             - Assume the AI that receives the prompt will handle ambiguities or ask questions later.
             - Return only the final prompt, no explanations or lists or quoted or introduction.
+            - Don't put it in quote
     `,
           },
           {
@@ -72,6 +73,7 @@ Return only the full prompt I should feed to the AI.`
     res.status(500).json({ error: 'Failed to get response from Groq API.' })
   }
 })
-app.listen(3000, () => {
-  console.log('Server is running on port 3000')
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`)
 })
