@@ -4,6 +4,7 @@ import axios from 'axios'
 import express from 'express'
 
 dotenv.config()
+
 const app = express()
 app.use(cors())
 app.use(express.json())
@@ -26,27 +27,28 @@ app.post('/generate', async (req, res) => {
       'https://api.groq.com/openai/v1/chat/completions',
       {
         model: 'llama3-8b-8192',
-
         messages: [
           {
             role: 'system',
-            content: `You are a prompt generator. Your task is to create a single, self-contained, optimized, effective prompt to be used as input for an AI assistant,that will push the AI to return interesting, diverse, or challenging ideas.
+            content: `You are a prompt generator. Your task is to create a single, self-contained, optimized, effective prompt to be used as input for an AI assistant, that will push the AI to return interesting, diverse, or challenging ideas.
 
-            The prompt should:
-            - Be a clear and complete instruction.
-            - Include all context provided by the user.
-            - Never ask follow-up questions or request clarifications.
-            - Assume the AI that receives the prompt will handle ambiguities or ask questions later.
-            - Return only the final prompt, no explanations or lists or quoted or introduction.
-            - Don't put it in quote
-    `,
+The prompt should:
+- Be a clear and complete instruction.
+- Include all context provided by the user.
+- Never ask follow-up questions or request clarifications.
+- Assume the AI that receives the prompt will handle ambiguities or ask questions later.
+- Return only the final prompt, no explanations or lists or quoted or introduction.
+- Don't put it in quote`
           },
           {
             role: 'user',
-            content: `Generate a prompt to achieve this ${prompt}`
+            content: `Generate a single prompt I can give to an AI to achieve this outcome:
+
+${prompt}
+
+Return only the full prompt I should feed to the AI.`
           }
-        ]
-        ,
+        ],
         temperature: 0.7,
       },
       {
@@ -69,6 +71,7 @@ app.post('/generate', async (req, res) => {
     res.status(500).json({ error: 'Failed to get response from Groq API.' })
   }
 })
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
