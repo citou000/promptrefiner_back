@@ -31,21 +31,20 @@ app.post('/generate', async (req, res) => {
           {
             role: 'system',
             content: `You are a prompt generator. Your task is to create a single, self-contained, optimized, effective prompt to be used as input for an AI assistant, that will push the AI to return interesting, diverse, or challenging ideas.
-
-The prompt should:
-- Be a clear and complete instruction.
-- Include all context provided by the user.
-- Never ask follow-up questions or request clarifications.
-- Assume the AI that receives the prompt will handle ambiguities or ask questions later.
-- Return only the final prompt, no explanations or lists or quoted or introduction.
-- Don't put it in quote`
+            The prompt should:
+            - Be a clear and complete instruction.
+            - Include all context provided by the user.
+            - Never ask follow-up questions or request clarifications.
+            - Assume the AI that receives the prompt will handle ambiguities or ask questions later.
+            - Return only the final prompt, no explanations or lists or quoted or introduction.
+            - Don't put it in quote`,
           },
           {
             role: 'user',
             content: `Generate a single prompt I can give to an AI to achieve this outcome:
                       ${prompt}
-                      Return only the full prompt I should feed to the AI.`
-          }
+                      Return only the full prompt I should feed to the AI.`,
+          },
         ],
         temperature: 0.7,
       },
@@ -70,7 +69,7 @@ The prompt should:
   }
 })
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
 })
