@@ -37,13 +37,16 @@ app.post('/generate', async (req, res) => {
             - Never ask follow-up questions or request clarifications.
             - Assume the AI that receives the prompt will handle ambiguities or ask questions later.
             - Return only the final prompt, no explanations or lists or quoted or introduction.
-            - Don't put it in quote`,
+            - Don't put it in quote,
+            - Don't use introduction phrases like "Here is a prompt" or "This is a prompt".
+          - Don't use the phrase "Generate a prompt" or "Create a prompt".
+          `,
           },
           {
             role: 'user',
             content: `Generate a single prompt I can give to an AI to achieve this outcome:
                       ${prompt}
-                      Return only the full prompt I should feed to the AI.`,
+                      Return only the full prompt I should feed to the AI. Not anything else. Don't put it in quotes, don't use introduction phrases like "Here is a prompt" or "This is a prompt". Don't use the phrase "Generate a prompt" or "Create a prompt".`,
           },
         ],
         temperature: 0.7,
